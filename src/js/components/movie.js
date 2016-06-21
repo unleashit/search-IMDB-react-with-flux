@@ -17,7 +17,12 @@ var Movie = React.createClass({
                         <h4>{this.props.movie.Title}</h4>
                         <ul className="list-group">
                             <li className="list-group-item">Year Released: {this.props.movie.Year}</li>
-                            <li className="list-group-item">IMDB ID: {this.props.movie.imdbID}</li>
+                            <li className="list-group-item">Actors: {this.props.movie.Actors}</li>
+                            <li className="list-group-item">Awards: {this.props.movie.Awards}</li>
+                            <li className="list-group-item">Director: {this.props.movie.Director}</li>
+                            <li className="list-group-item">Rated: {this.props.movie.Rated}</li>
+                            <li className="list-group-item">Metascore: {this.props.movie.Metascore}</li>
+                            <li className="list-group-item">Plot: {this.props.movie.Plot}</li>
                         </ul>
                         <a href={link} className="btn btn-primary">View on IMDB</a>
                     </div>
