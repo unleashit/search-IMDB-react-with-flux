@@ -6,13 +6,14 @@ var MovieResults = require('./movieResults')
 
 function getAppState() {
     return {
-        movies: AppStore.getMovieResults()
+        movies: AppStore.getMovieResults(),
+        firstSearch: AppStore.getFirstSearch()
     }
 }
 
 var App = React.createClass({
     getInitialState: function() {
-      return getAppState();  
+        return getAppState();  
     },
     componentDidMount: function() {
         AppStore.addChangeListener(this._onChange);
@@ -23,7 +24,7 @@ var App = React.createClass({
     },
     
     render: function() {
-        var movieResults = (!this.state.movies.length) ? '' : <MovieResults movies={this.state.movies} />;
+        var movieResults = (this.state.firstSearch) ? '' : <MovieResults movies={this.state.movies} />;
 
         return (
             <div>

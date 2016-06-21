@@ -8,6 +8,7 @@ var CHANGE_EVENT = 'change';
 
 var _movies = [];
 var _selected = '';
+var _firstSearch = true;
 
 var AppStore = objectAssign({}, EventEmitter.prototype, {
     setMovieResults: function(movies) {
@@ -15,6 +16,12 @@ var AppStore = objectAssign({}, EventEmitter.prototype, {
     },
     getMovieResults: function() {
        return _movies;
+    },
+    setFirstSearch: function(bool) {
+        _firstSearch = bool;
+    },
+    getFirstSearch: function() {
+       return _firstSearch;
     },
     emitChange: function () {
         this.emit(CHANGE_EVENT);
@@ -32,6 +39,7 @@ AppDispatcher.register(function(payload) {
 
     switch(action.actionType) {
         case AppConstants.SEARCH_MOVIES:
+            AppStore.setFirstSearch(false);
             AppAPI.searchMovies(action.movie);
             AppStore.emit(CHANGE_EVENT);
             break;

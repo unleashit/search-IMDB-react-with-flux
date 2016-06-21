@@ -9,6 +9,8 @@ module.exports = {
             }
         })
         .then(resp => {
+            if (resp.data.Response === "False") throw 'no results found.';
+
             var imdbUrls = resp.data.Search.map(item => axios.get('http://www.omdbapi.com/?i=' + item.imdbID) );
 
             return axios.all(imdbUrls)
@@ -22,7 +24,8 @@ module.exports = {
             AppActions.receiveMovieResults(movies);
         })
         .catch(err => {
-            alert(err);
+            console.log(err);
+            AppActions.receiveMovieResults([]);
         })
     }
 };
